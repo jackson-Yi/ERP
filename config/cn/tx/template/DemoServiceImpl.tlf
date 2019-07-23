@@ -1,0 +1,20 @@
+package cn.tx.service.impl;
+
+import cn.tx.dao.DemoDao;
+import cn.tx.model.Demo;
+import cn.tx.query.DemoQuery;
+import cn.tx.service.DemoService;
+
+public class DemoServiceImpl extends BaseServiceImpl<Demo, DemoQuery> implements DemoService {
+
+	
+	private DemoDao demoDao;
+	
+	public void setDemoDao(DemoDao demoDao) {
+		this.demoDao = demoDao;
+		this.baseDao = demoDao;
+	}
+	
+	
+
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="http://www.springframework.org/schema/beans            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd            http://www.springframework.org/schema/context            http://www.springframework.org/schema/context/spring-context-3.2.xsd            http://www.springframework.org/schema/tx            http://www.springframework.org/schema/tx/spring-tx-3.2.xsd            http://www.springframework.org/schema/aop            http://www.springframework.org/schema/aop/spring-aop-3.2.xsd            ">  
+  <bean id="empService" class="cn.tx.service.impl.EmpServiceImpl"> 
+    <property name="empDao" ref="empDao"/>  
+    <property name="roleDao" ref="roleDao"/> 
+  </bean>  
+  <bean id="depService" class="cn.tx.service.impl.DepServiceImpl"> 
+    <property name="depDao" ref="depDao"/> 
+  </bean>  
+  <bean id="roleService" class="cn.tx.service.impl.RoleServiceImpl"> 
+    <property name="roleDao" ref="roleDao"/> 
+    <property name="menuDao" ref="menuDao"/>
+  </bean>  
+  <bean id="supplierService" class="cn.tx.service.impl.SupplierServiceImpl"> 
+    <property name="supplierDao" ref="supplierDao"/> 
+  </bean>  
+  <bean id="productTypeService" class="cn.tx.service.impl.ProductTypeServiceImpl"> 
+    <property name="productTypeDao" ref="productTypeDao"/> 
+  </bean>  
+  <bean id="productService" class="cn.tx.service.impl.ProductServiceImpl"> 
+    <property name="productDao" ref="productDao"/> 
+  </bean>  
+  <bean id="orderModelService" class="cn.tx.service.impl.OrderModelServiceImpl"> 
+    <property name="orderModelDao" ref="orderModelDao"/>  
+    <property name="consoleLogDao" ref="consoleLogDao"/>  
+    <property name="orderDetailDao" ref="orderDetailDao"/> 
+  </bean>  
+  <bean id="orderDetailService" class="cn.tx.service.impl.OrderDetailServiceImpl"> 
+    <property name="orderDetailDao" ref="orderDetailDao"/> 
+  </bean>  
+  <bean id="consoleLogService" class="cn.tx.service.impl.ConsoleLogServiceImpl"> 
+    <property name="consoleLogDao" ref="consoleLogDao"/> 
+  </bean>  
+  <bean id="storeService" class="cn.tx.service.impl.StoreServiceImpl"> 
+    <property name="storeDao" ref="storeDao"/>  
+    <property name="productDao" ref="productDao"/>  
+    <property name="orderModelDao" ref="orderModelDao"/>  
+    <property name="orderDetailDao" ref="orderDetailDao"/> 
+  </bean>  
+  <bean id="storeDetailService" class="cn.tx.service.impl.StoreDetailServiceImpl"> 
+    <property name="storeDetailDao" ref="storeDetailDao"/> 
+  </bean>  
+  <bean id="menuService" class="cn.tx.service.impl.MenuServiceImpl">
+    <property name="menuDao" ref="menuDao"/>
+  </bean>
+</beans>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<package name="basePack" extends="struts-default" abstract="true">
+		<interceptors>
+			<interceptor name="loginInterceptor" class="cn.tx.interceptor.LoginInterceptor"></interceptor>
+			<interceptor-stack name="erpStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="erpStack"></default-interceptor-ref>
+		
+	</package>
+	
+	
+	<package name="erp" extends="basePack">
+		
+	
+	
+		<global-results>
+			<result name="login">/WEB-INF/jsps/emp/toLogin.jsp</result>
+		</global-results>
+		
+		<!-- 
+			做单独的页面跳转，不需要class，主要是用于main页面和context页面的跳转
+		 -->
+		<action name="erp_*">
+			<result>/WEB-INF/jsps/{1}.jsp</result>
+		</action>
+		<action name="emp_*" class="empAction" method="emp_{1}">
+			<!-- 排除不需要拦截的方法 -->
+			<interceptor-ref name="erpStack">
+				<param name="loginInterceptor.excludeMethods">emp_toLogin,emp_login</param>
+			</interceptor-ref>
+			<result name="success">/WEB-INF/jsps/emp/{1}.jsp</result>
+			<result name="list" type="redirectAction">emp_list</result>
+			<result name="main" type="redirectAction">erp_main</result>
+		</action>
+		<action name="ajax_emp_*" class="empAction" method="ajax_emp_{1}">
+			<interceptor-ref name="erpStack">
+				<param name="loginInterceptor.excludeMethods">ajax_emp_getImage</param>
+			</interceptor-ref>
+		</action>
+		
+		<action name="dep_*" class="depAction" method="dep_{1}">
+			<result name="success">/WEB-INF/jsps/dep/{1}.jsp</result>
+		</action>
+		<action name="role_*" class="roleAction" method="role_{1}">
+			<result name="success">/WEB-INF/jsps/role/{1}.jsp</result>
+		</action>
+		
+		<action name="ajax_role_*" class="roleAction" method="ajax_role_{1}"/>
+		
+		<action name="supplier_*" class="supplierAction" method="supplier_{1}">
+			<result name="success">/WEB-INF/jsps/supplier/{1}.jsp</result>
+		</action>
+		<action name="ajax_supplier_*" class="supplierAction" method="ajax_supplier_{1}"/>
+			
+		<action name="productType_*" class="productTypeAction" method="productType_{1}">
+			<result name="success">/WEB-INF/jsps/productType/{1}.jsp</result>
+		</action>
+		<action name="ajax_productType_*" class="productTypeAction" method="ajax_productType_{1}"/>
+		<action name="product_*" class="productAction" method="product_{1}">
+			<result name="success">/WEB-INF/jsps/product/{1}.jsp</result>
+		</action>
+		<action name="ajax_product_*" class="productAction" method="ajax_product_{1}"/>
+			
+		<action name="orderModel_*" class="orderModelAction" method="orderModel_{1}">
+			<result name="success">/WEB-INF/jsps/order/buy/{1}.jsp</result>
+		</action>
+		<action name="ajax_orderModel_*" class="orderModelAction" method="ajax_orderModel_{1}"/>
+			
+		<action name="tranOrder_*" class="tranOrderAction" method="tranOrder_{1}">
+			<result name="success">/WEB-INF/jsps/transport/{1}.jsp</result>
+			<result name="store_success">/WEB-INF/jsps/store/{1}.jsp</result>
+			<result name="store_inDetail">/WEB-INF/jsps/store/{1}.jsp</result>
+		</action>
+		<action name="ajax_tranOrder_*" class="tranOrderAction" method="ajax_tranOrder_{1}"/>	
+		
+		<action name="store_*" class="storeAction" method="store_{1}">
+			<result name="success">/WEB-INF/jsps/store/{1}.jsp</result>
+		</action>
+		<action name="ajax_store_*" class="storeAction" method="ajax_store_{1}"/>
+		
+		<action name="consoleLog_*" class="consoleLogAction" method="consoleLog_{1}">
+			<result name="success">/WEB-INF/jsps/log/{1}.jsp</result>
+		</action>	
+	</package>
+	
+</struts>

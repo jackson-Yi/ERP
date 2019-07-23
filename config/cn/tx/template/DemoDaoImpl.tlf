@@ -1,0 +1,31 @@
+package cn.tx.dao.impl;
+
+import org.apache.commons.lang.StringUtils;
+
+import cn.tx.dao.DemoDao;
+import cn.tx.model.Demo;
+import cn.tx.query.DemoQuery;
+
+public class DemoDaoImpl extends BaseDaoImpl<Demo, DemoQuery> implements DemoDao {
+
+	@Override
+	public String createHql(DemoQuery equery) {
+		String hql = "from Demo t where 1=1 ";
+		
+		return hql;
+	}
+
+	@Override
+	public String createHqlCount(DemoQuery q) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String createHqlCondition(DemoQuery q) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}
